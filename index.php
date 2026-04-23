@@ -26,9 +26,9 @@ if (isset($_POST['login'])) {
         $sql = "INSERT INTO users (meno, heslo) VALUES ('$meno', '$heslo')";
         mysqli_query($conn, $sql);
 
-        echo "Ulozene";
+        echo "Uložené";
     } else {
-        echo "Vypln vsetko";
+        echo "Vyplň všetky údaje";
     }
 }
 ?>
