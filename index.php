@@ -28,3 +28,29 @@ $result = mysqli_query($conn, $sql);
 <body>
 
 <h1>Todo List</h1>
+<h2>Pridaj ulohu</h2>
+
+<form method="POST">
+    <input type="text" name="nazov" placeholder="Nazov ulohy"><br><br>
+    <textarea name="popis" placeholder="Popis"></textarea><br><br>
+    <button type="submit" name="pridat">Pridat</button>
+</form>
+
+<?php
+if (isset($chyba)) {
+    echo "<p style='color:red;'>$chyba</p>";
+}
+?>
+
+<h2>Zoznam uloh</h2>
+
+<?php while ($row = mysqli_fetch_assoc($result)) { ?>
+    <div style="border:1px solid black; padding:10px; margin:10px;">
+        <b><?php echo $row['nazov']; ?></b><br>
+        <?php echo $row['popis']; ?><br>
+        Stav: <?php echo $row['stav']; ?>
+    </div>
+<?php } ?>
+
+</body>
+</html>
