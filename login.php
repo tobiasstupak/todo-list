@@ -1,0 +1,35 @@
+<?php
+include "db.php";
+
+if (isset($_POST['login'])) {
+    $meno = $_POST['meno'];
+    $heslo = $_POST['heslo'];
+
+    $sql = "SELECT * FROM users WHERE meno='$meno' AND heslo='$heslo'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        header("Location: todo.php");
+        exit;
+    } else {
+        echo "Zle meno alebo heslo";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<form method="POST">
+    <input type="text" name="meno" placeholder="meno"><br><br>
+    <input type="password" name="heslo" placeholder="heslo"><br><br>
+    <button type="submit" name="login">Prihlasit</button>
+</form>
+
+</body>
+</html>
