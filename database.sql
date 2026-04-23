@@ -23,7 +23,7 @@ CREATE TABLE tasks (
 
 INSERT INTO users (meno, heslo) VALUES
 ('tobias', '1234'),
-('test', 'abcd');
+('samuel', 'abcd');
 
 INSERT INTO tasks (user_id, nazov, popis, stav) VALUES
 (1, 'Dokoncit PHP projekt', 'Spravit CRUD operacie pre todo list', 'nova'),
