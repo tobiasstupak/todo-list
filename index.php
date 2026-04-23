@@ -1,34 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-
-<h2>Prihlasenie</h2>
-
-<form method="POST">
-    <input type="text" name="meno" placeholder="meno"><br><br>
-    <input type="password" name="heslo" placeholder="heslo"><br><br>
-    <button type="submit" name="login">Prihlasit sa</button>
-</form>
-
-</body>
-</html>
-
 <?php
 include "db.php";
 
-if (isset($_POST['login'])) {
-    $meno = $_POST['meno'];
-    $heslo = $_POST['heslo'];
+// PRIDANIE ULOHY
+if (isset($_POST['pridat'])) {
+    $nazov = trim($_POST['nazov']);
+    $popis = trim($_POST['popis']);
+    $user_id = 1; // natvrdo user
 
-    if ($meno != "" && $heslo != "") {
-        $sql = "INSERT INTO users (meno, heslo) VALUES ('$meno', '$heslo')";
+    if (!empty($nazov)) {
+        $sql = "INSERT INTO tasks (user_id, nazov, popis) VALUES ('$user_id', '$nazov', '$popis')";
         mysqli_query($conn, $sql);
-
-        echo "Uložené";
     } else {
-        echo "Vyplň všetky údaje";
+        $chyba = "Nazov ulohy nesmie byt prazdny";
     }
 }
+
+// NACITANIE ULOH
+$sql = "SELECT * FROM tasks ORDER BY id DESC";
+$result = mysqli_query($conn, $sql);
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo list</title>
+</head>
+<body>
+
+<h1>Todo List</h1>
