@@ -10,7 +10,7 @@
     <button>Prihlasit sa</button>
 </a>
 
-<a href="register.php">
+<a href="registracia.php">
     <button>Registrovat sa</button>
 </a>
 
