@@ -5,7 +5,7 @@ include "db.php";
 if (isset($_POST['pridat'])) {
     $nazov = trim($_POST['nazov']);
     $popis = trim($_POST['popis']);
-    $user_id = 1; // natvrdo user
+    $user_id = 1; 
 
     if (!empty($nazov)) {
         $sql = "INSERT INTO tasks (user_id, nazov, popis) VALUES ('$user_id', '$nazov', '$popis')";
