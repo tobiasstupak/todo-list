@@ -1,7 +1,7 @@
 <?php
 include "db.php";
 
-// PRIDANIE ULOHY
+
 if (isset($_POST['pridat'])) {
     $nazov = trim($_POST['nazov']);
     $popis = trim($_POST['popis']);
@@ -15,7 +15,7 @@ if (isset($_POST['pridat'])) {
     }
 }
 
-// NACITANIE ULOH
+
 $sql = "SELECT * FROM tasks ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 ?>
