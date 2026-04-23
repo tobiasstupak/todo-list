@@ -1,0 +1,18 @@
+<?php
+include "db.php";
+
+if (isset($_POST['login'])) {
+    $meno = $_POST['meno'];
+    $heslo = $_POST['heslo'];
+
+    $sql = "SELECT * FROM users WHERE meno='$meno' AND heslo='$heslo'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "Prihlásenie úspešné";
+    } else {
+        echo "Zlé meno alebo heslo";
+    }
+}
+?>
+
