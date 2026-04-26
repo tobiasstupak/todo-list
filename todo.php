@@ -1,7 +1,15 @@
 <?php
 include "db.php";
 
+// DELETE
+if (isset($_GET['delete'])) {
+    $id = (int)$_GET['delete'];
+    mysqli_query($conn, "DELETE FROM tasks WHERE id = $id");
+    header("Location: todo.php");
+    exit();
+}
 
+// CREATE
 if (isset($_POST['pridat'])) {
     $nazov = trim($_POST['nazov']);
     $popis = trim($_POST['popis']);
@@ -15,7 +23,7 @@ if (isset($_POST['pridat'])) {
     }
 }
 
-
+// READ
 $sql = "SELECT * FROM tasks ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -48,7 +56,9 @@ if (isset($chyba)) {
     <div style="border:1px solid black; padding:10px; margin:10px;">
         <b><?php echo $row['nazov']; ?></b><br>
         <?php echo $row['popis']; ?><br>
-        Stav: <?php echo $row['stav']; ?>
+        Stav: <?php echo $row['stav']; ?><br><br>
+
+        <a href="todo.php?delete=<?php echo $row['id']; ?>">Zmazat</a>
     </div>
 <?php } ?>
 
