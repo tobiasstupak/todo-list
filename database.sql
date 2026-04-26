@@ -20,12 +20,3 @@ CREATE TABLE tasks (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-INSERT INTO users (meno, heslo) VALUES
-('tobias', '1234'),
-('samuel', 'abcd');
-
-INSERT INTO tasks (user_id, nazov, popis, stav) VALUES
-(1, 'Dokoncit PHP projekt', 'Spravit CRUD operacie pre todo list', 'nova'),
-(1, 'Pripravit README', 'Dopisat popis projektu na GitHub', 'hotova'),
-(2, 'Otestovat aplikaciu', 'Skusit pridanie, edit a zmazanie ulohy', 'nova');
