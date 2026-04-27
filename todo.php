@@ -2,7 +2,7 @@
 session_start();
 include "db.php";
 
-// Kontrola či je užívateľ prihlásený
+// KONTROLA LOGINU
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
