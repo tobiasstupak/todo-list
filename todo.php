@@ -1,5 +1,19 @@
 <?php
+session_start();
 include "db.php";
+
+// Kontrola či je užívateľ prihlásený
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// LOGOUT
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
 
 // STAV
 if (isset($_GET['done'])) {
@@ -45,7 +59,7 @@ if (isset($_POST['upravit'])) {
 if (isset($_POST['pridat'])) {
     $nazov = trim($_POST['nazov']);
     $popis = trim($_POST['popis']);
-    $user_id = 1;
+    $user_id = $_SESSION['user_id'];
 
     if (!empty($nazov)) {
         mysqli_query($conn, "INSERT INTO tasks (user_id, nazov, popis)
@@ -58,7 +72,7 @@ if (isset($_POST['pridat'])) {
 }
 
 // READ
-$result = mysqli_query($conn, "SELECT * FROM tasks ORDER BY id DESC");
+$result = mysqli_query($conn, "SELECT * FROM tasks WHERE user_id=" . $_SESSION['user_id'] . " ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +90,12 @@ $result = mysqli_query($conn, "SELECT * FROM tasks ORDER BY id DESC");
 
 <div class="container py-4">
 
-    <h1 class="text-center mb-4">Todo List</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Todo List</h1>
+        <a href="todo.php?logout=1" class="btn btn-outline-danger">
+            Odhlásiť sa
+        </a>
+    </div>
 
     <!-- FORM -->
     <div class="card mb-4 shadow-sm">
